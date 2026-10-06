@@ -3,6 +3,7 @@ const mongose = require('mongoose')
 const cors = require('cors')//allows frontend and backend to communicate with each other even through cross origin
 require('dotenv').config();
 
+const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 app.use(cors());
