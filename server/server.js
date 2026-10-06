@@ -5,32 +5,12 @@ require('dotenv').config();
 
 
 const app = express();
-const userModel = require('./models/User')
 app.use(cors());
 app.use(express.json()); //middleware
 
-
-app.post('/', async (req, res) => {
-    const data = req.body;
-    await userModel.create({
-        name:data.name,
-        email:data.email,
-        password:data.password,
-        role:data.role
-    })
-
-    res.status(201).json({
-        message:"Note created"
-    })
-})
-
-app.get('/', async (req,res) => {
-    const user = await userModel.find() //it always return an array
-
-    res.status(200).json({
-        message:"notes fetched successfully",
-        user:user
-    })
+app.use('/api/auth', authRoutes);
+app.get('/', (req, res) => {
+    res.send('API is running')
 })
 
 
